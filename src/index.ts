@@ -1,4 +1,10 @@
 import { pagesData } from "./data";
-import { processPage } from "./process-page";
+import { processPages } from "./process-page";
+import { PageDataItem } from './model/page-data-item';
 
-pagesData.forEach(page => processPage(page));
+let indexPage: PageDataItem = {
+    title: 'Company Index Page',
+    description: 'Index Page for Search Engine Optimization'
+};
+
+processPages(pagesData, indexPage);

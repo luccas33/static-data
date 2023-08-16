@@ -9,6 +9,7 @@ export const defaultTemplate = `
 </head>
 {{script}}
 <body>
+    {{urls}}
     <main>
         <h1>{{title}}</h1>
         <p>{{description}}</p>

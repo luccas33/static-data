@@ -16,6 +16,7 @@ export function processTemplate(page: PageData, item: PageDataItem) {
     template = template.replace(/{ *{ *description *} *}/ig, item.description);
     template = template.replace(/{ *{ *infos *} *}/ig, infosList);
     template = template.replace(/{ *{ *script *} *}/ig, getScript(page, item));
+    template = template.replace(/{ *{ *urls *} *}/ig, getUrlList(item.urls));
     return template;
 };
 
@@ -34,8 +35,17 @@ function getTxtList(infos?: string[]) {
     return `<ul>${html}</ul>`;
 }
 
+function getUrlList(urls?: string[]) {
+    if (!urls) return '';
+    return `
+    <nav>
+        ${urls.map(url => `<a href="${url}">${url}</a>`).join('\n')}
+    </nav>
+    `;
+}
+
 function getScript(page: PageData, item: PageDataItem) {
-    let path = page.redirectPath.replace(/{ *{ *id *} *}/ig, item.id);
+    let path = page.redirectPath.replace(/{ *{ *id *} *}/ig, item.id || '');
     let url = getUrl(staticDataConfigs.baseRedirectUrl, path);
     return `<script>window.location.replace("${url}");</script>`;
 }

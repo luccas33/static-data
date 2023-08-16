@@ -1,7 +1,8 @@
 export interface PageDataItem {
-    id: string
+    id?: string
     title: string,
     description: string,
     infos?: {[k: string]: string},
-    remove?: boolean
+    remove?: boolean,
+    urls?: string[]
 }
