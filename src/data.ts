@@ -26,7 +26,8 @@ export const pagesData: PageData[] = [
                 id: '1',
                 title: 'Título Serviço 1',
                 description: 'Descrição do Serviço 1',
-                infos: {nome: 'Serviço 1', valor: '$ 20,00', 'avaliação': '5 estrelas'}
+                infos: {nome: 'Serviço 1', valor: '$ 20,00', 'avaliação': '5 estrelas'},
+                remove: true
             },
             {
                 id: '2',

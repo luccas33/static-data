@@ -15,12 +15,18 @@ function genItemPage(page: PageData, item: PageDataItem) {
     let filePath = (staticDataConfigs.baseDir || '').trim();
     filePath = filePath.endsWith('\\') ? filePath : filePath + '\\';
     filePath += page.path;
-    if (!fs.existsSync(filePath)) {
-        fs.mkdirSync(filePath);
-    }
+    let partialPath = '';
+    filePath.split(/\\|\//g).forEach(part => {
+        partialPath += part + '\\';
+        if (!fs.existsSync(partialPath))
+            fs.mkdirSync(partialPath);
+    });
     filePath = `${filePath}\\${title}.html`;
     if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
+    }
+    if (item.remove) {
+        return;
     }
     let fileContent = processTemplate(page, item);
     fs.writeFileSync(filePath, fileContent);
